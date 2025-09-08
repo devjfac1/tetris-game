@@ -167,10 +167,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 movePiece(0, 1);
                 break;
             case ' ': // Hard drop
+                let moved = false;
                 while (!checkCollision()) {
                     movePiece(0, 1);
+                    moved = true;
                 }
-                movePiece(0, -1);
+                if (moved) {
+                    movePiece(0, -1);
+                }
                 placePiece();
                 break;
         }
