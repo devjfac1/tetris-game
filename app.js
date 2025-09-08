@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPosition = { x: 0, y: 0 };
     let score = 0;
     let level = 1;
+    let gameStarted = false; // Variable para controlar el estado del juego
 
     function generatePiece() {
         const randomIndex = Math.floor(Math.random() * pieces.length);
@@ -149,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize game
     resetGame();
     generatePiece();
-    gameLoop();
 
     // Keyboard controls
     window.addEventListener('keydown', (event) => {
@@ -215,6 +215,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function startGame() {
+        if (!gameStarted) {
+            gameStarted = true;
+            gameLoop();
+        }
+    }
+
     function showTutorial() {
         const tutorialSteps = [
             'Bienvenido a Tetris. Usa las teclas A y D para mover las piezas a la izquierda y derecha.',
@@ -253,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tutorialText.textContent = tutorialSteps[currentStep];
             } else {
                 document.body.removeChild(tutorialOverlay);
-                gameLoop(); // Reanudar el juego después del tutorial
+                startGame(); // Iniciar el juego después del tutorial
             }
         });
         tutorialOverlay.appendChild(nextButton);
