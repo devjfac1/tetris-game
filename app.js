@@ -253,6 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tutorialText.textContent = tutorialSteps[currentStep];
             } else {
                 document.body.removeChild(tutorialOverlay);
+                gameLoop(); // Reanudar el juego después del tutorial
             }
         });
         tutorialOverlay.appendChild(nextButton);
